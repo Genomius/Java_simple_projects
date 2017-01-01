@@ -1,0 +1,6 @@
+auto:color=red;model=BMW 6-series;id=0;user=0;
+auto:color=black;model=VW golf IV GTI;id=1;user=1;
+auto:color=green;model=Lada Vesta;id=2;user=5;
+auto:color=white;model=Tesla;id=3;user=0;
+auto:color=black;model=Porshe new-series;id=7;user=7;
+auto:color=black metallic;model=UAZ Patriot;id=6;user=7;

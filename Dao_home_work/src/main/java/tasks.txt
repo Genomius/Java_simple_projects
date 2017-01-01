@@ -1,0 +1,25 @@
+Задание:
+
+Java IO
+
+Реализовать UserDao:
+models.User - id, name, age, List<models.Auto>
+models.Auto - id, model, color, user
+
+user.txt
+id name age
+
+autos.txx
+id model color user_id
+
+
+UserDao - интерфейс
+models.User find(int id);
+boolean save(models.User user);
+boolean update(models.User user);
+boolean delete(int id);
+List<models.User> findAll();
+
+Класс UsersDaoFileBasedImpl {
+	(String usersFileName, String autoFileName)
+}

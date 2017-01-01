@@ -1,0 +1,6 @@
+user:name=Denis;id=0;age=24;
+user:name=Diana;id=1;age=22;
+user:name=Denis;id=2;age=24;
+user:name=Diana;id=3;age=22;
+user:name=Denis;id=4;age=24;
+user:name=Diana;id=5;age=22;
