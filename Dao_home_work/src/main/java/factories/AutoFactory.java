@@ -1,10 +1,9 @@
 package factories;
 
-import dao.UserDao;
+import dao.AutoDao;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,38 +14,39 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class UserFactory {
-    private static UserFactory instance;
-    private UserDao userDao;
+public class AutoFactory {
+    private static AutoFactory instance;
+    AutoDao autoDao;
     
     static{
-        instance = new UserFactory();
+        instance = new AutoFactory();
     }
     
-    private UserFactory(){
+    private AutoFactory(){
         Properties properties = new Properties();
         
         try {
             properties.load(new FileInputStream("/home/den/IdeaProjects/Dao_home_work/src/main/resources/context.properties"));
             String dataType = properties.getProperty("data.type");
-            String dataClass = properties.getProperty("userdata." + dataType);
-    
-            if (dataType.equals("file")) {
-                String dataFileUrl = properties.getProperty("userfile.url");
-        
+            String dataClass = properties.getProperty("autodata." + dataType);
+            
+            if(dataType.equals("file")){
+                String dataFileUrl = properties.getProperty("autofile.url");
+                
                 Constructor<?> constructor = Class.forName(dataClass).getConstructor(String.class);
-                userDao = (UserDao) constructor.newInstance(dataFileUrl);
-            } else if (dataType.equals("jdbc")) {
+                autoDao = (AutoDao) constructor.newInstance(dataFileUrl);
+            } else if(dataType.equals("jdbc")){
                 String dataJdbcUser = properties.getProperty("database.user");
                 String dataJdbcPass = properties.getProperty("database.pass");
                 String dataJdbcUrl = properties.getProperty("datajdbc.url");
-                String jdbcDriver = properties.getProperty("db.driver");
-        
-                Class.forName(jdbcDriver);
+                String dbDriver = properties.getProperty("db.driver");
+                
+                Class.forName(dbDriver);
                 Connection connection = DriverManager.getConnection(dataJdbcUrl, dataJdbcUser, dataJdbcPass);
                 Constructor<?> constructor = Class.forName(dataClass).getConstructor(Connection.class);
-                userDao = (UserDao) constructor.newInstance(connection);
-            } else if (dataType.equals("data_source")) {
+                autoDao = (AutoDao) constructor.newInstance(connection);
+            }
+            else if (dataType.equals("data_source")) {
                 DataSource dataSource;
                 String dataJdbcUser = properties.getProperty("database.user");
                 String dataJdbcPass = properties.getProperty("database.pass");
@@ -61,19 +61,19 @@ public class UserFactory {
                 dataSource = driverManagerDataSource;
     
                 Constructor<?> constructor = Class.forName(dataClass).getConstructor(DataSource.class);
-                userDao = (UserDao)constructor.newInstance(dataSource);
+                autoDao = (AutoDao) constructor.newInstance(dataSource);
             }
         } catch (IllegalAccessException | NoSuchMethodException | InstantiationException | InvocationTargetException |
-                IOException | ClassNotFoundException | SQLException e) {
+                IOException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
     
-    public static UserFactory getInstance(){
+    public static AutoFactory getInstance(){
         return instance;
     }
     
-    public UserDao getUserDao(){
-        return userDao;
+    public AutoDao getAutoDao(){
+        return autoDao;
     }
 }

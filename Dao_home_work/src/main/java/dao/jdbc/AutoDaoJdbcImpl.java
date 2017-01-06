@@ -2,11 +2,13 @@ package dao.jdbc;
 
 import dao.AutoDao;
 import models.Auto;
+
+import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoDaoSqlBasedImpl implements AutoDao {
+public class AutoDaoJdbcImpl implements AutoDao {
     private static final String SQL_SELECT_ALL_AUTOS = "SELECT * FROM auto_dao;";
     private static final String SQL_SELECT_AUTO_BY_ID = "SELECT * FROM auto_dao WHERE id=?;";
     private static final String SQL_INSERT_AUTO= "INSERT INTO auto_dao(model, color, user_id) VALUES(?,?,?);";
@@ -17,7 +19,7 @@ public class AutoDaoSqlBasedImpl implements AutoDao {
     private Statement statement;
     private PreparedStatement preparedStatement;
     
-    public AutoDaoSqlBasedImpl(Connection connection) {
+    public AutoDaoJdbcImpl(Connection connection) {
         this.connection = connection;
         try {
             statement = connection.createStatement();
@@ -25,6 +27,7 @@ public class AutoDaoSqlBasedImpl implements AutoDao {
             e.printStackTrace();
         }
     }
+    
     public List<Auto> findAllAutos() {
         List<Auto> autos = new ArrayList<Auto>();
         

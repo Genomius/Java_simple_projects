@@ -44,7 +44,6 @@ public class UserDaoFileBasedImpl implements UserDao {
         ArrayList<User> users = new ArrayList<User>();
         String fileData = FilesAndData.getFileData(this.usersFileName);
         List<Map<String, String>> user_data = FilesAndData.getEntityData(fileData,"user");
-        List<Auto> autos = new AutoDaoFileBasedImpl("src/main/java/autos.txt").findAllAutos();
     
         int i = 0;
         int id = -1;
@@ -65,12 +64,6 @@ public class UserDaoFileBasedImpl implements UserDao {
             if(i!=0 && i%3==0) {
                 User user = new User(name, age);
                 user.setId(id);
-                
-                for(Auto auto : autos)
-                    if(auto.getUserId() == id)
-                        user.addAuto(auto);
-                
-                users.add(user);
             }
         }
 

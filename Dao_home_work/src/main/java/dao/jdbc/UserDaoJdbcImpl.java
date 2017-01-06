@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoSqlBasedImpl implements UserDao {
+public class UserDaoJdbcImpl implements UserDao {
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM user_dao;";
     private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM user_dao WHERE id=?;";
     private static final String SQL_INSERT_USER = "INSERT INTO user_dao(name, age) VALUES(?,?);";
@@ -20,7 +20,7 @@ public class UserDaoSqlBasedImpl implements UserDao {
     private Statement statement;
     private PreparedStatement preparedStatement;
     
-    public UserDaoSqlBasedImpl(Connection connection) {
+    public UserDaoJdbcImpl(Connection connection) {
         this.connection = connection;
         try {
             statement = connection.createStatement();
@@ -28,7 +28,7 @@ public class UserDaoSqlBasedImpl implements UserDao {
             e.printStackTrace();
         }
     }
-    
+
     public List<User> findAllUsers() {
         List<User> users = new ArrayList<User>();
         
@@ -42,15 +42,6 @@ public class UserDaoSqlBasedImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        
-        AutoDao autoDaoSqlBased = new AutoDaoSqlBasedImpl(connection);
-        List<Auto> autos = autoDaoSqlBased.findAllAutos();
-        for(User user : users) {
-            for (Auto auto : autos) {
-                if (auto.getUserId() == user.getId())
-                    user.addAuto(auto);
-            }
         }
     
         return users;
@@ -69,14 +60,6 @@ public class UserDaoSqlBasedImpl implements UserDao {
                 user = new User(resultSet.getString("name"), resultSet.getInt("age"));
                 user.setId(resultSet.getInt("id"));
             }
-    
-            AutoDao autoDaoSqlBased = new AutoDaoSqlBasedImpl(connection);
-            List<Auto> autos = autoDaoSqlBased.findAllAutos();
-            for(Auto auto : autos){
-                if(auto.getUserId() == user.getId())
-                    user.addAuto(auto);
-            }
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }
