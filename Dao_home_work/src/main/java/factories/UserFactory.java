@@ -13,6 +13,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class UserFactory {
@@ -67,6 +69,7 @@ public class UserFactory {
                 IOException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        
     }
     
     public static UserFactory getInstance(){
