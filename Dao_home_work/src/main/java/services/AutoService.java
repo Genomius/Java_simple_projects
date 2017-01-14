@@ -34,4 +34,14 @@ public class AutoService {
     public Auto getAutoById(int id){
         return autoDao.find(id);
     }
+    
+    public boolean deleteAutoById(int autoId){
+        return autoDao.delete(autoId);
+    }
+    
+    public boolean saveAuto(Auto auto){return autoDao.save(auto);}
+    
+    public boolean updateAuto(Auto auto, Auto new_auto){
+        return autoDao.update(auto, new_auto);
+    }
 }

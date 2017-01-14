@@ -1,0 +1,17 @@
+.users table tr td{
+    border: 1px solid #5e5e5e;
+    padding: 5px;
+    text-align: center;
+}
+
+.users i{
+    cursor: pointer;
+}
+
+.users i.glyphicon-trash{
+    color: darkred;
+}
+
+.users i.glyphicon-pencil{
+    color: darkblue;
+}

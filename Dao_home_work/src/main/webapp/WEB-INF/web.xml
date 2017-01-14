@@ -6,12 +6,24 @@
     <display-name>Servlet project</display-name>
 
     <servlet>
-        <servlet-name>index</servlet-name>
+        <servlet-name>main</servlet-name>
         <servlet-class>servlets.Main</servlet-class>
     </servlet>
-
+    GET  /users - получить пользователей
+    POST /users - добавить пользователя
+    GET  /users/{user-id}/autos - получить машины
+    POST /users/{user-id}/autos - добавить машину
+    POST /users/{user-id}?action=update
+    POST /users/{user-id}?action=delete
+    POST /users/{user-id}/autos/{auto-id}?action=update Редирект на страницу с машинами пользователя
     <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>main</servlet-name>
+        <url-pattern></url-pattern>
+        <url-pattern>/users</url-pattern>
+        <url-pattern>/users/delete</url-pattern>
+        <url-pattern>/users/add</url-pattern>
+        <url-pattern>/users/update</url-pattern>
+        <url-pattern>/users/get</url-pattern>
+        <url-pattern>/autos</url-pattern>
     </servlet-mapping>
 </web-app>

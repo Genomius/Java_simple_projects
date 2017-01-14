@@ -79,4 +79,10 @@ public class UserService {
         
         return user;
     }
+    
+    public boolean deleteUserById(int userId){
+        return userDao.delete(userId);
+    }
+    
+    public boolean saveUser(User user){return userDao.save(user);}
 }

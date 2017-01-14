@@ -9,6 +9,11 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <version.jquery>3.1.1</version.jquery>
+        <version.bootstrap>3.3.7</version.bootstrap>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -39,6 +44,16 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${version.jquery}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${version.bootstrap}</version>
         </dependency>
     </dependencies>
     <build>
