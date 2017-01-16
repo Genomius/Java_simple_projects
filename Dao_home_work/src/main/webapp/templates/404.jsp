@@ -6,9 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Восславь солнце !</h1><%=request.getContextPath()%>
-        <a href="/users">Отобразить список пользователей</a><br>
-        <a href="/autos">Отобразить список автомобилей</a><br>
+        <h1>Такой страницы не существует (404)</h1>
     </div>
 </body>
 </html>

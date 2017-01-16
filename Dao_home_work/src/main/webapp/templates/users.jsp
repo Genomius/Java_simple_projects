@@ -21,13 +21,13 @@
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td>${user.getId()}</td>
-                    <td><a href="/users/get?id=${user.getId()}">${user.getName()}</a></td>
+                    <td><a href="/users/${user.getId()}">${user.getName()}</a></td>
                     <td>${user.getAge()}</td>
                     <td><i class="glyphicon glyphicon-trash delete-user" data-id="${user.getId()}"
                            data-toggle="modal" data-target="#deleteModal"></i></td>
                     <td><i class="glyphicon glyphicon-pencil edit-user" data-id="${user.getId()}"
                            data-toggle="modal" data-target="#editModal"></i></td>
-                    <td><a href="/users/get/autos?id=${user.getId()}"><i class="glyphicon glyphicon-road show-auto"></i></a></td>
+                    <td><a href="/users/${user.getId()}/autos"><i class="glyphicon glyphicon-road show-auto"></i></a></td>
                 </tr>
             </c:forEach>
         </table>
@@ -103,3 +103,4 @@
         </div>
     </div>
 </body>
+</html>

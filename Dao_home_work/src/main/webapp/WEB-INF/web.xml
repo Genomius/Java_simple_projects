@@ -6,24 +6,50 @@
     <display-name>Servlet project</display-name>
 
     <servlet>
-        <servlet-name>main</servlet-name>
-        <servlet-class>servlets.Main</servlet-class>
+        <servlet-name>frontController</servlet-name>
+        <servlet-class>servlets.FrontController</servlet-class>
     </servlet>
-    GET  /users - получить пользователей
+    <servlet>
+        <servlet-name>userController</servlet-name>
+        <servlet-class>servlets.UserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>autoController</servlet-name>
+        <servlet-class>servlets.AutoController</servlet-class>
+    </servlet>
+
+    GET /users - получить пользователей
+    GET /users/{user-id}
+    GET /autos/{auto-id}/users
+    GET /autos/{auto-id}/users/{user-id}
     POST /users - добавить пользователя
-    GET  /users/{user-id}/autos - получить машины
-    POST /users/{user-id}/autos - добавить машину
     POST /users/{user-id}?action=update
     POST /users/{user-id}?action=delete
-    POST /users/{user-id}/autos/{auto-id}?action=update Редирект на страницу с машинами пользователя
+
+    GET /autos
+    GET /autos/{auto-id}
+    GET /users/{user-id}/autos - получить машины
+    GET /users/{auto-id}/autos/{auto-id}
+    POST /users/{user-id}/autos - добавить машину
+    POST /autos/{auto-id}?action=update
+    POST /autos/{auto-id}?action=delete
+
     <servlet-mapping>
-        <servlet-name>main</servlet-name>
-        <url-pattern></url-pattern>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/*</url-pattern>
+        <url-pattern>/webjars/*</url-pattern>
+        <url-pattern>*.ico</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>frontController</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userController</servlet-name>
         <url-pattern>/users</url-pattern>
-        <url-pattern>/users/delete</url-pattern>
-        <url-pattern>/users/add</url-pattern>
-        <url-pattern>/users/update</url-pattern>
-        <url-pattern>/users/get</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>autoController</servlet-name>
         <url-pattern>/autos</url-pattern>
     </servlet-mapping>
 </web-app>

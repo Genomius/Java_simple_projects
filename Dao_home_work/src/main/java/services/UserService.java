@@ -4,6 +4,7 @@ import dao.UserDao;
 import models.Auto;
 import models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -38,6 +39,23 @@ public class UserService {
         List<User> users = userDao.findAllUsers();
         
         return users;
+    }
+    
+    public List<User> getAllUsersByAutoId(int autoId, AutoService autoService){
+        List<User> users = getAllUsersWithHisAutos(autoService);
+        List<User> new_users = new ArrayList<User>();
+        
+        for (User user : users) {
+            List<Auto> autos = user.getAutos();
+            
+            for (Auto auto : autos) {
+                if (autoId == auto.getId()) {
+                    new_users.add(user);
+                }
+            }
+        }
+        
+        return new_users;
     }
     
     public List<User> getAllUsersWithHisAutos(AutoService autoService){

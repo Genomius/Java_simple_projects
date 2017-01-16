@@ -9,7 +9,7 @@ $( document ).ready(function() {
    $('#delete-user').on('click', function () {
        $.ajax({
            type: "POST",
-           url: '/users/delete?id=' + entity_for_delete_id,
+           url: '/users/' + entity_for_delete_id + '?action=delete',
            dataType: 'json',
            success: function(data) {
                 location.reload();
@@ -26,7 +26,7 @@ $( document ).ready(function() {
     $('#add-user').on('click', function () {
         $.ajax({
             type: "POST",
-            url: '/users/add?name=' + $('#addModal input[name=name]').val() + '&age=' + $('#addModal input[name=age]').val(),
+            url: '/users?action=add&name=' + $('#addModal input[name=name]').val() + '&age=' + $('#addModal input[name=age]').val(),
             dataType: 'json',
             success: function(data) {
                 location.reload();
@@ -47,7 +47,7 @@ $( document ).ready(function() {
     $('#edit-user').on('click', function () {
         $.ajax({
             type: "POST",
-            url: '/users/update?id=' + entity_for_edit_id + '&name=' + $('#editModal input[name=name]').val() + '&age=' + $('#editModal input[name=age]').val(),
+            url: '/users/' + entity_for_edit_id + '?action=update&name=' + $('#editModal input[name=name]').val() + '&age=' + $('#editModal input[name=age]').val(),
             dataType: 'json',
             success: function(data) {
                 location.reload();

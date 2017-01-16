@@ -59,12 +59,20 @@ public class Main extends HttpServlet{
         String servletPath = request.getServletPath();
         String[] paths = servletPath.split("/");
         
-        if(paths.length > 3){
+        if(paths.length == 4){
             String entity = paths[1].toLowerCase();
             String action = paths[2].toLowerCase();
+            String secondEntity = paths[3].toLowerCase();
                      
+            if(entity.equals("users")){
+                if(action.equals("get")){
+                    if(secondEntity.equals("autos")){
+                        renderToResponse(request, response, entity + "_" + secondEntity);
+                    }
+                }
+            }
             
-        } else if(paths.length > 2){
+        } else if(paths.length == 3){
             String entity = paths[1].toLowerCase();
             String action = paths[2].toLowerCase();
             
@@ -75,7 +83,7 @@ public class Main extends HttpServlet{
                     renderToResponse(request, response, "auto");
                 }
             }
-        } else if(paths.length > 1) {
+        } else if(paths.length == 2) {
             String entity = paths[1].toLowerCase();
             
             renderToResponse(request, response, entity);
@@ -151,6 +159,18 @@ public class Main extends HttpServlet{
         request.setAttribute("autos", auto_list);
         
         request.getRequestDispatcher("/templates/autos.jsp").forward(request, response);
+    }
+    
+    public void users_autos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        User user = userService.getUserByIdWithAuto(Integer.parseInt(id), autoService);
+        List<Auto> autos = user.getAutos();
+        
+        request.setAttribute("autos", autos);
+        request.setAttribute("user", user);
+    
+        request.getRequestDispatcher("/templates/autos.jsp").forward(request, response);
+    
     }
     
     public void user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
