@@ -1,20 +1,25 @@
 package models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "autos")
 public class Auto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @Column(name = "model")
     private String model;
+    
+    @Column(name = "color")
     private String color;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
     
-    public Auto(String model, String color, User user) {
-        this.model = model;
-        this.color = color;
-        this.user = user;
-        this.id = -1;
-    }
-    
-    public void printAutoData(){
-        System.out.println("#" + this.getId() + " " + this.getModel() + " " + this.getColor() + " " + this.user.getName());
+    public Auto() {
     }
     
     public int getId() {

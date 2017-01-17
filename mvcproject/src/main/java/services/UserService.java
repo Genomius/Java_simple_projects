@@ -20,16 +20,6 @@ public class UserService {
         for(User user : users)
             if(user.getName().equals(name))
                 return true;
-
-        return false;
-    }
-    
-    public boolean haveAuto(User user, AutoService autoService){
-        List<Auto> autos = autoService.getAllAutos();
-        
-        for (Auto auto : autos)
-            if (auto.getUser().getId() == user.getId())
-                return true;
         
         return false;
     }

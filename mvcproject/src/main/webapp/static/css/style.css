@@ -1,0 +1,17 @@
+.users table tr td, .autos table tr td{
+    border: 1px solid #5e5e5e;
+    padding: 5px;
+    text-align: center;
+}
+
+.users i, .autos i{
+    cursor: pointer;
+}
+
+.users i.glyphicon-trash, .autos i.glyphicon-trash{
+    color: darkred;
+}
+
+.users i.glyphicon-pencil .autos i.glyphicon-pencil{
+    color: darkblue;
+}
