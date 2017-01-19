@@ -1,6 +1,6 @@
-package dao;
+package genome.dao;
 
-import models.User;
+import genome.models.User;
 
 public interface UserDao extends Dao<User>{
     

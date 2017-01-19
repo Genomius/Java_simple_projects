@@ -1,4 +1,4 @@
-package models;
+package genome.models;
 
 import javax.persistence.*;
 

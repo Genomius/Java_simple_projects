@@ -1,10 +1,9 @@
-package dao.hibernate;
+package genome.dao.hibernate;
 
-import dao.UserDao;
-import models.User;
+import genome.dao.UserDao;
+import genome.models.User;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
@@ -28,7 +27,7 @@ public class UserDaoHibernateImpl implements UserDao {
     
     public User find(int id) {
         session.beginTransaction();
-        User user = session.createQuery(SQL_GET_USER_BY_ID, User.class).getSingleResult();
+        User user = session.createQuery(SQL_GET_USER_BY_ID, User.class).setParameter("userId", id).getSingleResult();
         session.getTransaction().commit();
         
         return user;

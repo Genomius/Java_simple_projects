@@ -1,6 +1,6 @@
-package dao;
+package genome.dao;
 
-import models.Auto;
+import genome.models.Auto;
 
 public interface AutoDao extends Dao<Auto>{
     

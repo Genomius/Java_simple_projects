@@ -1,4 +1,4 @@
-package dao;
+package genome.dao;
 
 import java.util.List;
 

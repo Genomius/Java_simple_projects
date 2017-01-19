@@ -1,7 +1,7 @@
-package fabrics;
+package genome.fabrics;
 
-import models.Auto;
-import models.User;
+import genome.models.Auto;
+import genome.models.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

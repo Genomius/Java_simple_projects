@@ -1,19 +1,20 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <title>${Title}</title>
+    <title>${title}</title>
     <jsp:include page="header.jsp"/>
 </head>
 <body class="autos">
     <div class="container">
-        <h1>Автомобили</h1>
+        <h1>${title}</h1>
         <c:if test="${empty user}">
             <a href="/">Главная</a> -> <a href="">Автомобили</a><br><br>
         </c:if>
         <c:if test="${not empty user}">
             <a href="/">Главная</a> -> <a href="/users">Пользователи</a> ->
-            <a href="/users/get?id=${user.getId()}">${user.getName()}</a> -> <a href="">Автомобили пользователя</a><br><br>
+            <a href="/users/${user.id}">${user.name}</a> -> <a href="">Автомобили пользователя</a><br><br>
         </c:if>
 
         <c:if test="${empty autos}">
@@ -26,23 +27,23 @@
                     <td>ИД</td>
                     <td>Модель</td>
                     <td>Цвет</td>
-                    <td>Цвет</td>
+                    <td>Пользователь</td>
                     <td style="width: 80px;">Удалить</td>
                     <td style="width: 80px;">Изменить</td>
-                    <td style="width: 80px;">Показать юзера</td>
+                    <td style="width: 80px;">Показать пользователя</td>
                 </tr>
 
                 <c:forEach var="auto" items="${autos}">
                     <tr>
-                        <td>${auto.getId()}</td>
-                        <td>${auto.getModel()}</td>
-                        <td>${auto.getColor()}</td>
-                        <td>${auto.getUserId()}</td>
-                        <td><i class="glyphicon glyphicon-trash delete-auto" data-id="${auto.getId()}"
+                        <td>${auto.id}</td>
+                        <td>${auto.model}</td>
+                        <td>${auto.color}</td>
+                        <td>${auto.user.name}</td>
+                        <td><i class="glyphicon glyphicon-trash delete-auto" data-id="${auto.id}"
                                data-toggle="modal" data-target="#deleteModal"></i></td>
-                        <td><i class="glyphicon glyphicon-pencil edit-auto" data-id="${auto.getId()}"
+                        <td><i class="glyphicon glyphicon-pencil edit-auto" data-id="${auto.id}"
                                data-toggle="modal" data-target="#editModal"></i></td>
-                        <td><a href="/autos/get/user?id=${auto.getId()}"><i class="glyphicon glyphicon-user show-user"></i></a></td>
+                        <td><a href="/autos/get/user?id=${auto.id}"><i class="glyphicon glyphicon-user show-user"></i></a></td>
                     </tr>
                 </c:forEach>
             </table>

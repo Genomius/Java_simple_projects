@@ -1,7 +1,7 @@
-package fabrics;
+package genome.fabrics;
 
-import dao.UserDao;
-import dao.hibernate.UserDaoHibernateImpl;
+import genome.dao.UserDao;
+import genome.dao.hibernate.UserDaoHibernateImpl;
 import org.hibernate.Session;
 
 public class UserFactory {

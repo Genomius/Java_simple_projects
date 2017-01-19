@@ -1,10 +1,8 @@
-package services;
+package genome.services;
 
-import dao.UserDao;
-import models.Auto;
-import models.User;
+import genome.dao.UserDao;
+import genome.models.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {

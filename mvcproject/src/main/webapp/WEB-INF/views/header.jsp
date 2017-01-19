@@ -1,11 +1,14 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<title>${title}</title>
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+<spring:url value="/static/jquery/3.1.1/jquery.js" var="jqueryJs" />
+<spring:url value="/static/bootstrap/3.3.7/css/bootstrap.min.css" var="bootstrapCss" />
+<spring:url value="/static/bootstrap/3.3.7/js/bootstrap.min.js" var="bootstrapJs" />
+<spring:url value="/static/css/style.css" var="styleCss" />
+<spring:url value="/static/js/script.js" var="scriptJs" />
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/webjars/jquery/3.1.1/jquery.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../static/js/jquery.serialize-object.js"></script>
-<script type="text/javascript" src="../static/js/script.js"></script>
-
+<link href="${styleCss}" rel="stylesheet"/>
+<link href="${bootstrapCss}" rel="stylesheet"/>
+<script src="${jqueryJs}"></script>
+<script src="${bootstrapJs}"></script>
+<script src="${scriptJs}"></script>

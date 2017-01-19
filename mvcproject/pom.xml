@@ -45,6 +45,16 @@
             <artifactId>postgresql</artifactId>
             <version>9.4.1207</version>
         </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-mvc-jsp</artifactId>
+            <version>2.26-b01</version>
+        </dependency>
     </dependencies>
 
     <build>

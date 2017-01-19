@@ -1,4 +1,4 @@
-package config;
+package genome.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -22,7 +22,7 @@ public class Initializer implements WebApplicationInitializer {
     
     private AnnotationConfigWebApplicationContext getContext(){
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("config");
+        context.setConfigLocation("genome/config");
         
         return context;
     }

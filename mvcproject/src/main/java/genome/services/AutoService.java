@@ -1,9 +1,9 @@
-package services;
+package genome.services;
 
-import dao.AutoDao;
-import models.Auto;
-import models.User;
+import genome.dao.AutoDao;
+import genome.models.Auto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AutoService {
@@ -29,5 +29,17 @@ public class AutoService {
     
     public int updateAuto(int autoId, Auto newAuto){
         return autoDao.update(autoId, newAuto);
+    }
+    
+    public List<Auto> getAllAutosByUserId(int userId){
+        List<Auto> autos = autoDao.findAll();
+        List<Auto> userAutos = new ArrayList<Auto>();
+        
+        for (Auto auto : autos) {
+            if (auto.getUser().getId() == userId)
+                userAutos.add(auto);
+        }
+        
+        return userAutos;
     }
 }
