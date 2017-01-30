@@ -22,6 +22,12 @@ public class Auto {
     public Auto() {
     }
     
+    public Auto(String model, String color, User user){
+        this.model = model;
+        this.color = color;
+        this.user = user;
+    }
+    
     public int getId() {
         return id;
     }

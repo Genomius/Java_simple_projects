@@ -9,18 +9,23 @@ import java.util.ArrayList;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     
     @Column(name = "name")
     private String name;
     
     @Column(name = "age")
-    private int age;
+    private Integer age;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Auto> autos;
     
     public User() {
+    }
+    
+    public User(String name, int age){
+        this.name = name;
+        this.age = age;
     }
     
     public int getId() {

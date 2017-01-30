@@ -1,14 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
-<head>
-    <jsp:include page="header.jsp"/>
-</head>
-<body>
-    <div class="container">
+<jsp:include page="header.jsp"/>
+    <div class="content home">
         <h1>Восславь солнце !</h1><%=request.getContextPath()%>
         <a href="/users">Отобразить список пользователей</a><br>
         <a href="/autos">Отобразить список автомобилей</a><br>
     </div>
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

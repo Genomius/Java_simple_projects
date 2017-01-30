@@ -1,13 +1,8 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
-<head>
-    <title>${title}</title>
-    <jsp:include page="header.jsp"/>
-</head>
-<body class="users">
-    <div class="container">
+<jsp:include page="header.jsp"/>
+    <div class="content users">
         <h1>${title}</h1>
         <a href="/">Главная</a> -> <a href="/users">Пользователи</a> -> <a href="">${title}</a><br><br>
 
@@ -17,5 +12,4 @@
 
         <a href="/users/${user.id}/autos">Показать автомобили пользователя</a>
     </div>
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

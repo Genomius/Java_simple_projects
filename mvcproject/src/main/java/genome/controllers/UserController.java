@@ -1,25 +1,27 @@
 package genome.controllers;
 
-import genome.dao.UserDao;
-import genome.fabrics.UserFactory;
 import genome.models.User;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import genome.services.UserService;
+
+import org.hibernate.annotations.Parameter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
-import genome.services.UserService;
-import java.util.List;
 
+import javax.ws.rs.PathParam;
+import java.util.List;
 
 @Controller
 public class UserController {
+    
+    @Autowired
+    private UserService userService;
+    
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "text/html")
     @ResponseBody
-    ModelAndView showUsers(){
-        UserDao userDao = UserFactory.getInstance().getUserDao();
-        List<User> users = new UserService(userDao).getAllUsers();
+    ModelAndView showUsers() {;
+        List<User> users = userService.getAllUsers();
         
         ModelAndView modelAndView = new ModelAndView("users");
         modelAndView.addObject("title", "Пользователи");
@@ -32,9 +34,8 @@ public class UserController {
     @ResponseBody
     ModelAndView showUser(
             @PathVariable("user-id") Integer id
-    ){
-        UserDao userDao = UserFactory.getInstance().getUserDao();
-        User user = new UserService(userDao).getUserById(id);
+    ) {
+        User user = userService.getUserById(id);
         
         ModelAndView modelAndView = new ModelAndView("user");
         modelAndView.addObject("title", user.getName());
@@ -42,4 +43,22 @@ public class UserController {
         
         return modelAndView;
     }
+    
+    @RequestMapping(value = "/users", method = RequestMethod.POST, produces = "text/html")
+    @ResponseBody
+    ModelAndView addUser(
+            @RequestParam("name") String name,
+            @RequestParam("age") int age
+    ) {
+        int id = userService.saveUser(new User(name, age));
+        List<User> users = userService.getAllUsers();
+    
+        ModelAndView modelAndView = new ModelAndView("users");
+        modelAndView.addObject("title", "Пользователи");
+        modelAndView.addObject("users", users);
+    
+        return modelAndView;
+    }
+    
+}
     

@@ -7,9 +7,8 @@ import models.User;
 import services.UserService;
 import services.AutoService;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Main{
     public static void main(String[] args) {
@@ -21,7 +20,6 @@ public class Main{
         User user;
         Auto auto;
         
-    
         user = userService.getUserById(3);
         if(user != null)
             user.printUserData();
