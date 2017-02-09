@@ -92,8 +92,91 @@ class CustomArray<T> implements Iterable {
     }
 }
 
+abstract class Digest {
+    private Map<byte[], byte[]> cache = new HashMap<byte[], byte[]>();
+    
+    public byte[] digest(byte[] input) {
+        byte[] result = cache.get(input);
+        
+        if (result == null) {
+            synchronized (cache) {
+                result = cache.get(input);
+                
+                if (result == null) {
+                    result = doDigest(input);
+                    
+                    cache.put(input, result);
+                }
+            }
+        }
+        return result;
+    }
+    
+    protected abstract byte[] doDigest(byte[] input);
+    
+}
+
+class DigestImpl extends Digest {
+    
+    @Override
+    protected byte[] doDigest(byte[] input) {
+        return new byte[0];
+    }
+}
+
+class E {
+    E next;
+    int val;
+}
+
+class CustomLinkedList {
+    static E reverse(E e){
+        if (e.next.next == null) {
+            e.next.next = e;
+            e = e.next;
+            e.next.next = null;
+        }
+        else {
+            reverse(e.next);
+
+            
+            e.next.next = null;
+        }
+        
+        return e;
+    }
+}
+
+
+
 public class Program {
     public static void main(String[] args) {
+        Collections.sort
+//        Digest digest = new DigestImpl();
+//        digest.digest(new byte[0]);
+//
+//        CustomLinkedList customLinkedList = new CustomLinkedList();
+//        E e1 = new E();
+//        e1.val = 1;
+//        E e2 = new E();
+//        e2.val = 2;
+//        E e3 = new E();
+//        e3.val = 3;
+//        E e4 = new E();
+//        e4.val = 4;
+//
+//        e1.next = e2;
+//        e2.next = e3;
+//        e3.next = e4;
+//        e4.next = null;
+//
+//        E result = CustomLinkedList.reverse(e1);
+//
+//        do{
+//            System.out.print(result.val + " ");
+//            result = result.next;
+//        }
+//        while(result.next != null);
         
     }
     
@@ -136,7 +219,7 @@ public class Program {
             System.out.print(product.name + " ");
         }
         System.out.println();
-    
+        
         products.sort(new SortByPrice());
         for (Product product : products) {
             System.out.print(product.price + " ");
@@ -144,7 +227,7 @@ public class Program {
         System.out.println();
     }
     
-    private void simpleSorting(){
+    void simpleSorting(){
         String[] strArray = {"4", "2", "1", "8", "3"};
         TreeSet<String> treeSet = new TreeSet<>();
         treeSet.add(strArray[0]);
@@ -196,5 +279,4 @@ public class Program {
         System.out.println(pass);
         System.out.println(encodedPass);
     }
-    
 }

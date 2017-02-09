@@ -30,8 +30,7 @@ public class UserDaoImpl implements UserDao {
     
     // language = SQL
     private static final String SQL_UPDATE_TOKEN = "UPDATE users SET token=:token WHERE id=:id";
-    private static final String SQL_SAVE_USER = "INSERT INTO users(" +
-            "login, password, name, surname) VALUES (?, ?, ?, ?)";
+    private static final String SQL_SAVE_USER = "INSERT INTO users(login, password, name, surname) VALUES (?, ?, ?, ?)";
     private static final String SQL_TOKEN_IS_EXIST = "SELECT EXISTS (SELECT 1 FROM users WHERE token=:token)";
     
     private SessionFactory sessionFactory;
@@ -118,7 +117,7 @@ public class UserDaoImpl implements UserDao {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         params.put("token", token);
-        template.update(SQL_UPDATE_TOKEN, params);
+        namedParameterJdbcTemplate.update(SQL_UPDATE_TOKEN, params);
     }
     
     @Override

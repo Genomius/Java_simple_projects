@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ChatDao {
     List<Chat> findAll();
-    Chat find(Integer id);
-    Integer save(Chat chat);
+    Chat findById(Long id);
+    Chat save(Chat chat);
     boolean delete(Integer id);
     boolean update(Chat chat);
     boolean addUserToChat(Integer userId, Integer chatId);

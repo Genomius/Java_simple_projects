@@ -18,4 +18,5 @@ public interface UserService {
     
     UserDto registerUser(UserForRegistrationDto user);
     String login(String login, String password);
+    User findByToken(String token);
 }

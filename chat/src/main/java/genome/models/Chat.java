@@ -9,26 +9,23 @@ public class Chat {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     
     @Column(name = "title")
     private String title;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
-    private User owner;
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chat")
-    private List<User> members;
-    
     public Chat() {
     }
     
-    public Integer getId() {
+    public Chat(String title) {
+        this.title = title;
+    }
+    
+    public Long getId() {
         return id;
     }
     
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     
@@ -38,21 +35,5 @@ public class Chat {
     
     public void setTitle(String title) {
         this.title = title;
-    }
-    
-    public User getOwner() {
-        return owner;
-    }
-    
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-    
-    public List<User> getMembers() {
-        return members;
-    }
-    
-    public void setMembers(List<User> members) {
-        this.members = members;
     }
 }

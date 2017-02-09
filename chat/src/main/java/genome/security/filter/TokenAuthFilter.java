@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class TokenAuthFilter extends GenericFilterBean {
-    private static final String HEADER = "Auth-Token";
+    private static final String AUTH_TOKEN = "Auth-Token";
     
     private AuthenticationManager authenticationManager;
     
@@ -26,16 +26,16 @@ public class TokenAuthFilter extends GenericFilterBean {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
-        
-        String headerValue = request.getHeader(HEADER);
-        
+
+        String authToken = request.getHeader(AUTH_TOKEN);
+
         try {
             if (isNotRequiringProtection(request))
                 filterChain.doFilter(servletRequest, servletResponse);
-            else if (headerValue == null || headerValue.equals(""))
+            else if (authToken == null || authToken.equals(""))
                 throw new IllegalArgumentException("Token not found");
             else {
-                authenticationManager.authenticate(new TokenAuthentification(headerValue));
+                authenticationManager.authenticate(new TokenAuthentification(authToken));
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         }
@@ -46,7 +46,16 @@ public class TokenAuthFilter extends GenericFilterBean {
     
     private boolean isNotRequiringProtection(HttpServletRequest request) {
         return request.getRequestURI().startsWith("/users") && request.getMethod().equals("POST") ||
-                request.getRequestURI().endsWith("favicon.ico") ||
-                request.getRequestURI().startsWith("/login") && request.getMethod().equals("POST");
+                request.getRequestURI().endsWith(".ico") ||
+                request.getRequestURI().startsWith("/login") && request.getMethod().equals("POST") ||
+        
+                request.getRequestURI().endsWith("/info") ||
+                request.getRequestURI().endsWith("/websocket") ||
+                request.getRequestURI().endsWith("/xhr_streaming") ||
+                request.getRequestURI().endsWith("/xhr") ||
+                
+                request.getRequestURI().endsWith(".html") ||
+                request.getRequestURI().endsWith(".css") ||
+                request.getRequestURI().endsWith(".js");
     }
 }

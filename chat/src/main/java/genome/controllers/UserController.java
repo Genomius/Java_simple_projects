@@ -7,6 +7,7 @@ import genome.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +21,14 @@ public class UserController {
     
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers(){
-        return new ResponseEntity<>(userService.findAll(), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.ACCEPTED);
     }
     
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity<UserDto> signUp(
             @RequestBody UserForRegistrationDto user
     ){
-        return new ResponseEntity<>(userService.registerUser(user), HttpStatus.OK);
+        return new ResponseEntity<>(userService.registerUser(user), HttpStatus.CREATED);
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.POST)

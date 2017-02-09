@@ -32,7 +32,7 @@ public class TokenGeneratorImpl implements TokenGenerator {
         char[] buffer = genSalt().toCharArray();
         for(int i=0; i< buffer.length; i++)
             if(!isLegal(buffer[i]))
-                buffer[i] = CHARS[Math.abs(random.nextInt()) & CHARS.length];
+                buffer[i] = CHARS[Math.abs(random.nextInt()) % CHARS.length];
         
         return new String(buffer, OFFSET, LENGTH);
     }

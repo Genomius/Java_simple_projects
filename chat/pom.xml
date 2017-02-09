@@ -10,6 +10,11 @@
         <version>1.4.3.RELEASE</version>
     </parent>
 
+    <properties>
+        <version.jquery>3.1.1</version.jquery>
+        <version.bootstrap>3.3.7</version.bootstrap>
+    </properties>
+
     <groupId>genome</groupId>
     <artifactId>chat</artifactId>
     <version>0.1</version>
@@ -42,6 +47,16 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${version.jquery}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${version.bootstrap}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -89,6 +104,16 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>4.3.6.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>4.3.6.RELEASE</version>
         </dependency>
     </dependencies>
 

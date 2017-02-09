@@ -102,18 +102,24 @@ public class UserServiceImpl implements UserService{
     @Override
     public String login(String login, String password) {
         User registeredUser = userDao.findByLogin(login);
-        System.out.println("Пользователь с логином '" + login + "' найден !");
     
         if (registeredUser != null){
-            System.out.println("Пароль текущего пользователя: '" + password);
-            System.out.println("Пароль текущего пользователя в БД: '" + registeredUser.getPassword() + "'");
-    
             if (passwordEncoder.matches(password, registeredUser.getPassword())) {
                 String token = tokenGenerator.generateToken();
-                userDao.updateToken(registeredUser.getId(), token);
+                //ToDo: userDao.updateToken(registeredUser.getId(), token);
+                userDao.updateToken(registeredUser.getId(), "NIotGxwxvjpTqF13RMry");
+                //userDao.updateToken(registeredUser.getId(), "NIotGxwxvjpTqF13RMry2");
+    
+    
+                System.out.println("Авторизация пользователя '" + registeredUser.getLogin() + "' произошла успешно !");
                 
                 return token;
             } else throw new IllegalArgumentException("Invalid password");
         } else throw new IllegalArgumentException("Invalid login");
+    }
+    
+    @Override
+    public User findByToken(String token) {
+        return userDao.findByToken(token);
     }
 }
